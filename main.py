@@ -1,6 +1,6 @@
 # import
 import os, logging,tracemalloc
-from telethon import TelegramClient, events
+from telethon import TelegramClient, events, functions
 
 #----------------------------------- logging --------------------------------------------
 logging.basicConfig(
@@ -26,8 +26,30 @@ async def my_event_handler(event):
         infoList = [chat,sender,chat_id,sender_id]
         return infoList
     
-    x = await info(event)
-    print(x[0].User)
+    me = await client.get_me()
+    print(me.username)
+    #       ^ we used the dot operator to access the username attribute
+
+    result = await client(functions.photos.GetUserPhotosRequest(
+        user_id='me',
+        offset=0,
+        max_id=0,
+        limit=100
+    ))
+
+    # Working with list is also pretty basic
+    print(result.photos[0].sizes[-1].type)
+    #           ^       ^ ^       ^ ^
+    #           |       | |       | \ type
+    #           |       | |       \ last size
+    #           |       | \ list of sizes
+    #  access   |       \ first photo from the list
+    #  the...   \ list of photos
+    #
+    # To print all, you could do (or mix-and-match):
+    for photo in result.photos:
+        for size in photo.sizes:
+            print(size.type)
     if 'ping' in event.raw_text:
         await event.reply('Pong !!')
 
