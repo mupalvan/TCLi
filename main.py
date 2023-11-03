@@ -18,11 +18,15 @@ client = TelegramClient('session/'+phone_number, api_id, api_hash)
 
 @client.on(events.NewMessage)
 async def my_event_handler(event):
-    chat = await event.get_chat()
-    sender = await event.get_sender()
-    chat_id = event.chat_id
-    sender_id = event.sender_id
-    print(str(chat)+"\n\n"+str(sender)+"\n\n"+str(chat_id)+"\n\n"+str(sender_id))
+    async def info(event):
+        chat = await event.get_chat()
+        sender = await event.get_sender()
+        chat_id = event.chat_id
+        sender_id = event.sender_id
+        infoList = [chat,sender,chat_id,sender_id]
+        return infoList
+    
+    print(str(info[0])+"\n\n"+str(info[1])+"\n\n"+str(info[2])+"\n\n"+str(info[3]))
 
     if 'ping' in event.raw_text:
         await event.reply('Pong !!')
