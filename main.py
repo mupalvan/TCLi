@@ -1,6 +1,6 @@
 # import
 import os, logging,tracemalloc
-from telethon import TelegramClient
+from telethon import TelegramClient, events
 
 #----------------------------------- logging --------------------------------------------
 logging.basicConfig(
