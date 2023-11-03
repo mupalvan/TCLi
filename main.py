@@ -22,7 +22,7 @@ async def my_event_handler(event):
     sender = await event.get_sender()
     chat_id = event.chat_id
     sender_id = event.sender_id
-    print(str(chat+"\n\n"+sender+"\n\n"+chat_id+"\n\n"+sender_id))
+    print(str(chat)+"\n\n"+str(sender)+"\n\n"+str(chat_id)+"\n\n"+str(sender_id))
 
     if 'ping' in event.raw_text:
         await event.reply('Pong !!')
