@@ -26,7 +26,7 @@ async def my_event_handler(event):
         infoList = [chat,sender,chat_id,sender_id]
         return infoList
     
-    print(info(event)[0])
+    print(info(event))
 
     if 'ping' in event.raw_text:
         await event.reply('Pong !!')
