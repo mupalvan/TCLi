@@ -27,7 +27,7 @@ async def my_event_handler(event):
         return infoList
     
     x = await info(event)
-    print(x[0]['id'])
+    print(x[0]['User'])
     if 'ping' in event.raw_text:
         await event.reply('Pong !!')
 
