@@ -28,7 +28,7 @@ async def my_event_handler(event):
     
     if 'ping' in event.raw_text:
         await event.reply('Pong !!')
-    if 'info' in event.raw_text:
+    if 'info*' in event.raw_text:
         inf = await info(event)
         await event.reply(str(inf))
 client.start()
