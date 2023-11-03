@@ -18,8 +18,15 @@ client = TelegramClient('session/'+phone_number, api_id, api_hash)
 
 @client.on(events.NewMessage)
 async def my_event_handler(event):
-    if 'hello' in event.raw_text:
-        await event.reply('hi!')
+    chat = await event.get_chat()
+    sender = await event.get_sender()
+    chat_id = event.chat_id
+    sender_id = event.sender_id
+    print(chat+"\n\n"+sender+"\n\n"+chat_id+"\n\n"+sender_id)
+
+    if 'ping' in event.raw_text:
+        await event.reply('Pong !!')
 
 client.start()
-client.run_until_disconnected()
+if client.run_until_disconnected():
+    print("Start")
