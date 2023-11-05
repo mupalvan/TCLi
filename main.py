@@ -23,12 +23,12 @@ async def my_event_handler(event):
         sender = await event.get_sender()
         chat_id = event.chat_id
         sender_id = event.sender_id
-        infoList = [chat,sender,chat_id,sender_id]
+        infoList = [chat,sender,chat_id,sender_id]L
         return infoList
     
     if 'ping' in event.raw_text:
         await event.reply('Pong !!')
-    if 'info*' in event.raw_text:
+    if 'info' in event.raw_text:
         inf = await info(event)
         await event.reply(str(inf))
 client.start()
