@@ -1,8 +1,8 @@
-from instagrapi import Client
+from instabot import Bot
 
-cl = Client()
-cl.login("fapezhgol", "5540121341m")
 
-user_id = cl.user_id_from_username("fapezhgol")
-medias = cl.user_medias(user_id, 20)
-cl.media_pk_from_code("B-fKL9qpeab")
+bot = Bot()
+bot.login(username="fapezhgol", password="5540121341m")
+user_id = bot.get_user_id_from_username("lego")
+user_info = bot.get_user_info(user_id)
+print(user_info['biography'])
